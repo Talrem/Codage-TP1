@@ -1,6 +1,6 @@
 #include <stdlib.h>
 
-int tailleMatrice?(int nbUtilisateur){
+int tailleMatrice(int nbUtilisateur){
     switch(nbUtilisateur){
         case 1:
         case 2:
@@ -27,7 +27,7 @@ int tailleMatrice?(int nbUtilisateur){
             return 16;
         break;
         default:
-            printf("");
+            printf("Erreur nombre d'utilisateur non géré.");
         break;
         exit(-1);
     }
