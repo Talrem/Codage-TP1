@@ -33,6 +33,13 @@ int tailleMatrice(int nbUtilisateur){
     }
 }
 
-int main(int argc, char* argv[]){
+int genererHadamard(int tailleMatrice){
 
+}
+
+int main(int argc, char* argv[]){
+    int nbUtilisateur = 0;
+    if(argc != 1){
+        
+    }
 }
