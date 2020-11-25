@@ -38,8 +38,11 @@ int genererHadamard(int tailleMatrice){
 }
 
 int main(int argc, char* argv[]){
-    int nbUtilisateur = 0;
-    if(argc != 1){
-        
+    int nbUtilisateurs = 0;
+    if(argc != < 2){
+        printf("Attente d'un paramètre : <Nombre_D_Utilisateurs>");
     }
+    nbUtilisateurs = atoi(argv[1]);
+    int tailleMatrice = tailleMatrice(nbUtilisateurs);
+    genererHadamard(tailleMatrice);
 }
