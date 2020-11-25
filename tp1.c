@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include "hadamard.h"
 
 int calculerTailleMatrice(int nbUtilisateur){
     switch(nbUtilisateur){
@@ -32,18 +33,19 @@ int calculerTailleMatrice(int nbUtilisateur){
         break;
         exit(-1);
     }
-}
-
-int genererHadamard(int tailleMatrice){
-
+    return 0;
 }
 
 int main(int argc, char* argv[]){
     int nbUtilisateurs = 0;
     if(argc < 2){
         printf("Attente d'un paramètre : <Nombre_D_Utilisateurs>");
+        system("pause");
+        return 0;
     }
     nbUtilisateurs = atoi(argv[1]);
     int tailleMatrice = calculerTailleMatrice(nbUtilisateurs);
-    genererHadamard(tailleMatrice);
+    int mat[tailleMatrice][tailleMatrice];
+    genererHadamard(mat,tailleMatrice);
+
 }
