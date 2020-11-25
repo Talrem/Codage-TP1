@@ -46,6 +46,6 @@ int main(int argc, char* argv[]){
     nbUtilisateurs = atoi(argv[1]);
     int tailleMatrice = calculerTailleMatrice(nbUtilisateurs);
     int mat[tailleMatrice][tailleMatrice];
-    genererHadamard(mat,tailleMatrice);
+    genererHadamard(tailleMatrice,mat);
 
 }
