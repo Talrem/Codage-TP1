@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 
 int calculerTailleMat(int nbUtilisateur){
     switch(nbUtilisateur){
@@ -78,10 +79,44 @@ int fusionnerMats(
     return 0;
 }
 
-extern int genererHadamard(int tailleMat, int mat[][tailleMat]){
-    if(tailleMat > 1){// 4 8 16
-        int ** mat[tailleMat/2][tailleMat/2];
+void afficherHadamard(int tailleMat, int matH[][tailleMat]){
+    printf("H%d :\n", sqrt(tailleMat) );
+
+    for(int k = 0; k < tailleMat; k++){
+        printf("+---");
     }
+    printf("+\n");
+    for(int i = 0; i < tailleMat; i++){
+        for(int j = 0; j < tailleMat; j++){
+            if(matH[i][j] > 0){
+                printf("| %d ",matH[i][j]);
+            }else{
+                printf("|%d ",matH[i][j]);
+            }
+        }
+        printf("|\n");
+        for(int k = 0; k < tailleMat; k++){
+            printf("+---");
+        }
+        printf("+\n");
+    }
+}
+
+int genererHadamard(int tailleMat, int mat[][tailleMat], int matHPrec[][tailleMat/2]){
+    if(tailleMat == 2){
+        /*La matrice Hadamard de base. pour 2*/
+        int matH[2][2];
+        matH[0][0] = 1;
+        matH[0][1] = 1;
+        matH[1][0] = 1;
+        matH[1][1] = -1;
+        matHPrec = matH;
+
+    }else{
+        printf("Work In Progess...");
+        /*La on fait l'appel récursif pour générer la Hadamard précédente*/
+    }
+    afficherHadamard(tailleMat,matH);
     return 0;
 }
 
@@ -97,6 +132,7 @@ int main(int argc, char* argv[]){
     printf("Taille Mat : %d\n",tailleMat);
     system("pause");
     int mat[tailleMat][tailleMat];
-    genererHadamard(tailleMat, mat);
+    int matHPrec[tailleMat/2][tailleMat/2];
+    genererHadamard(tailleMat, mat, matHPrec);
     system("pause");
 }
