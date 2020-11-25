@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int calculerTailleMatrice(int nbUtilisateur){
+int calculerTaille mat(int nbUtilisateur){
     switch(nbUtilisateur){
         case 1:
         case 2:
@@ -35,13 +35,13 @@ int calculerTailleMatrice(int nbUtilisateur){
     return 0;
 }
 
-int fusionnerMatrices(
+int fusionner mats(
     int taille, int tailleFinale,
-    int matriceFinale[][tailleFinale],
-    int matrice1[][taille],
-    int matrice2[][taille],
-    int matrice3[][taille],
-    int matrice4[][taille]
+    int  matFinale[][tailleFinale],
+    int  mat1[][taille],
+    int  mat2[][taille],
+    int  mat3[][taille],
+    int  mat4[][taille]
 ){
     for(int i = 0; i < tailleFinale ; i++){
         printf("%d",taille);
@@ -49,9 +49,9 @@ int fusionnerMatrices(
     return 0;
 }
 
-extern int genererHadamard(int tailleMatrice, int mat[][tailleMatrice]){
-    if(tailleMatrice > 1){// 4 8 16
-        int ** mat[tailleMatrice/2][tailleMatrice/2];
+extern int genererHadamard(int taille mat, int mat[][taille mat]){
+    if(taille mat > 1){// 4 8 16
+        int ** mat[taille mat/2][taille mat/2];
     }
     return 0;
 }
@@ -64,10 +64,10 @@ int main(int argc, char* argv[]){
         return 0;
     }
     nbUtilisateurs = atoi(argv[1]);
-    int tailleMatrice = calculerTailleMatrice(nbUtilisateurs);
-    printf("Taille Matrice : %d\n",tailleMatrice);
+    int taille mat = calculerTaille mat(nbUtilisateurs);
+    printf("Taille  mat : %d\n",taille mat);
     system("pause");
-    int mat[tailleMatrice][tailleMatrice];
-    genererHadamard(tailleMatrice,mat);
+    int mat[taille mat][taille mat];
+    genererHadamard(taille mat,mat);
     system("pause");
 }
