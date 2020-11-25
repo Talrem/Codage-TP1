@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int calculerTaille mat(int nbUtilisateur){
+int calculerTailleMat(int nbUtilisateur){
     switch(nbUtilisateur){
         case 1:
         case 2:
@@ -45,44 +45,42 @@ int fusionnerMats(
 ){
     for(int i = 0; i < tailleFinale ; i++){
         for(int j = 0; j < tailleFinale ; j++){
-            switch(true){
-                case ( !(i > taille) && !(j > taille) ) :/*top left*/
-                    for(int c = 0; c < taille; c++){
-                        for(int d = 0; d < taille; d++){
-                            matFinale[i][j] = mat1[c][d];
-                        }
+            if( !(i > taille) && !(j > taille) ){
+                for(int c = 0; c < taille; c++){
+                    for(int d = 0; d < taille; d++){
+                        matFinale[i][j] = mat1[c][d];
                     }
-                break;
-                case ( (i > taille) && !(j > taille) ) :/*top right*/
-                    for(int c = 0; c < taille; c++){
-                        for(int d = 0; d < taille; d++){
-                            matFinale[i][j] = mat2[c][d];
-                        }
+                }
+            }/*top left*/
+            if( (i > taille) && !(j > taille) ){/*top right*/
+                for(int c = 0; c < taille; c++){
+                    for(int d = 0; d < taille; d++){
+                        matFinale[i][j] = mat2[c][d];
                     }
-                break;
-                case ( !(i > taille) && (j>taille) ) :/*bot left*/
-                    for(int c = 0; c < taille; c++){
-                        for(int d = 0; d < taille; d++){
-                            matFinale[i][j] = mat3[c][d];
-                        }
+                }
+            }
+            if( !(i > taille) && (j>taille) ){/*bot left*/
+                for(int c = 0; c < taille; c++){
+                    for(int d = 0; d < taille; d++){
+                        matFinale[i][j] = mat3[c][d];
                     }
-                break;
-                case ( (i > taille) && (j > taille) ) :/*bot right*/
-                    for(int c = 0; c < taille; c++){
-                        for(int d = 0; d < taille; d++){
-                            matFinale[i][j] = mat4[c][d];
-                        }
+                }
+            }
+            if( (i > taille) && (j > taille) ){/*bot right*/
+                for(int c = 0; c < taille; c++){
+                    for(int d = 0; d < taille; d++){
+                        matFinale[i][j] = mat4[c][d];
                     }
-                break;
+                }
             }
         }
     }
     return 0;
 }
 
-extern int genererHadamard(int taille mat, int mat[][taille mat]){
-    if(taille mat > 1){// 4 8 16
-        int ** mat[taille mat/2][taille mat/2];
+extern int genererHadamard(int tailleMat, int mat[][tailleMat]){
+    if(tailleMat > 1){// 4 8 16
+        int ** mat[tailleMat/2][tailleMat/2];
     }
     return 0;
 }
@@ -95,10 +93,10 @@ int main(int argc, char* argv[]){
         return 0;
     }
     nbUtilisateurs = atoi(argv[1]);
-    int taille mat = calculerTaille mat(nbUtilisateurs);
-    printf("Taille  mat : %d\n",taille mat);
+    int tailleMat = calculerTailleMat(nbUtilisateurs);
+    printf("Taille Mat : %d\n",tailleMat);
     system("pause");
-    int mat[taille mat][taille mat];
+    int mat[tailleMat][tailleMat];
     genererHadamard(tailleMat, mat);
     system("pause");
 }
