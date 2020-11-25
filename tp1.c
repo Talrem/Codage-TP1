@@ -46,28 +46,28 @@ int fusionnerMats(
     for(int i = 0; i < tailleFinale ; i++){
         for(int j = 0; j < tailleFinale ; j++){
             switch(true){
-                case ( (i > taille) && (j>taille) ) :/*top left*/
+                case ( !(i > taille) && !(j > taille) ) :/*top left*/
                     for(int c = 0; c < taille; c++){
                         for(int d = 0; d < taille; d++){
                             matFinale[i][j] = mat1[c][d];
                         }
                     }
                 break;
-                case ( (i > taille) && (j>taille) ) :/*top right*/
+                case ( (i > taille) && !(j > taille) ) :/*top right*/
                     for(int c = 0; c < taille; c++){
                         for(int d = 0; d < taille; d++){
                             matFinale[i][j] = mat2[c][d];
                         }
                     }
                 break;
-                case ( (i > taille) && (j>taille) ) :/*bot left*/
+                case ( !(i > taille) && (j>taille) ) :/*bot left*/
                     for(int c = 0; c < taille; c++){
                         for(int d = 0; d < taille; d++){
                             matFinale[i][j] = mat3[c][d];
                         }
                     }
                 break;
-                case ( (i > taille) && (j>taille) ) :/*bot right*/
+                case ( (i > taille) && (j > taille) ) :/*bot right*/
                     for(int c = 0; c < taille; c++){
                         for(int d = 0; d < taille; d++){
                             matFinale[i][j] = mat4[c][d];
