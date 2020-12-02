@@ -36,24 +36,20 @@ int tailleMat(int nbUser){
     int p=0; /*puissance de 2 */
     int taille=pow1(2,p); /*dimension de la matrice d'hadamard*/
 
-    if(nbUser == 1)
-    return 1;
-    else if(nbUser == 2)
-    return 2;
-    else if( nbUser == 3)
-    return 4;
-    else {
+    if(nbUser == 1){
+        return 1;
+    } else if(nbUser == 2){
+        return 2;
+    } else if( nbUser == 3){
+        return 4;
+    } else {
         while(cpt <= nbUser){
-
             if(taille<cpt){
                 p++;
                 taille = pow1(2,p);
             }
-
             cpt++;
-
         }
-
         return taille;
     }
 }
@@ -61,7 +57,7 @@ int tailleMat(int nbUser){
 void genereHadamard(int ** hada, int n){
 
     /* int H1[2][2]={ {1, 1},
-    {1,-1}};*/
+                      {1,-1}};*/
     int taille = n;
     int init=0,x1,y1;
     int cmpt=1,cmptX,cmptY,compt=2;
