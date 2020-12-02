@@ -1,3 +1,3 @@
-void afficher_hadamard(int ** mat, int);
-void afficher_tab_int(int tab[], int taille);
-void afficher_separateur();
+void afficheHadamard(int ** mat, int);
+void afficheTabInt(int tab[], int taille);
+void afficheSeparateur();

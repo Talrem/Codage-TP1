@@ -10,115 +10,98 @@
 
 
 int main(){
-/* ========== DECLARATION ============= */
-	int nb_utilisateur = 4;
+
+	int nbUsers = 4;
 	int taille = 4;
-	int ** mat_hadamard;
-	int num_sequence=0;
+	int ** matHadamard;
+	int numSequence=0;
 	int N = 3;
 
 	srand(time(NULL));
+	
+	printf("Veuillez rentrer le nombre d'utilisateurs : ");
 
+	scanf("%d",&nbUsers);
+	taille = taille_mat_selon_user(nbUsers);
 
-/* ======================= */
+	//mot envoyé par l'utilisateur
+	int mot[N];
+	//tableau contenant la sequence codée
+	int sequence[taille];
+	//tableau contenant le mot codé
+	int code[taille*N];
 
-/* ========== Initialisation ============= */
-   puts( " ====================== DEBUT DE PROGRAMME ========================= \n" ) ;
+	//Géneration de la séquence aléatoire
+	for(int i=0;i<N;i++){
+		mot[i] = rand()%2;
+	}
 
-   printf("Veuillez rentrer le nombre d'utilisateurs : ");
+	printf("La séquence qui a été générée est : ");
+	for(int i=0;i<N;i++){
+		printf(" %d ",mot[i]);
+	}
+	printf("\n");
 
-   scanf("%d",&nb_utilisateur);
-   taille = taille_mat_selon_user(nb_utilisateur);
+	// Allocation mémoire
+	matHadamard = (int **) malloc(taille * sizeof(int *));
+	if(NULL == matHadamard){
+		perror("Problème de malloc sur la matrice hadamard");
+		exit(EXIT_FAILURE);
+	}
 
-/* ======================= */
+	for(int i = 0; i < taille; ++i){
+		matHadamard[i] = (int *) malloc(taille * sizeof(int));
+		if(NULL == matHadamard[i]){
+			perror("Problème de malloc sur une ligne de la matrice hadamard");
+			exit(EXIT_FAILURE);
+		}
+	}
 
-   //mot envoyé par l'utilisateur
-   int mot[N];
-   //tableau contenant la sequence codée
-   int sequence[taille];
-   //tableau contenant le mot codé
-   int mot_code[taille*N];
+	/*Création de la matrice*/
+	init_mat(matHadamard,taille);
+	genereHadamard(matHadamard,taille);
+	printf("\nLa matrice Hadamard de taille %d est :\n", taille);
 
-   //Géneration de la séquence aléatoire
-   for(int i=0;i<N;i++){
-      mot[i] = rand()%2;
-   }
+	//Affichage de la matrice
+	afficheHadamard(matHadamard,taille);
 
-   printf("La séquence générée : ");
-   for(int i=0;i<N;i++){
-      printf(" %d ",mot[i]);
-   }
-   printf("\n");
+	//Attribution des séquences
+	for(int utilisateur = 0; utilisateur < nbUsers; utilisateur++){
 
-   /* ========== ALLOCATION ============= */
-   mat_hadamard = (int **) malloc(taille * sizeof(int *));
-   if(NULL == mat_hadamard){
-      perror("Pb malloc sur la matrice hadamard");
-      exit(EXIT_FAILURE);
-   }
+		/*selection d'une ligne libre au hasard*/
+		if((numSequence = selecteur(taille)) == -1){
+			perror("probleme selection ligne dans matrice hadamard");
+			exit(EXIT_FAILURE);
+		}
 
-   for(int i = 0; i < taille; ++i){
-      mat_hadamard[i] = (int *) malloc(taille * sizeof(int));
-      if(NULL == mat_hadamard[i]){
-         perror("Pb malloc sur une ligne de la matrice hadamard");
-         exit(EXIT_FAILURE);
-      }
-   }
-   /* ======================= */
+		for(int i = 0; i < taille; i++){
+			sequence[i]= matHadamard[numSequence][i];
+		}
+		printf("Le user %d utilise la séquence n°%d : \n", utilisateur+1, numSequence+1);
+		afficheTabInt(sequence, taille);
+		sleep(1);
 
+		for(int a=0;a<N;a++){
+			//chiffrement
+			for(int z=0;z<taille*N;z++){
+				if(mot[a] == 1)
+				code[z]= sequence[z%taille];
+				else
+				code[z]= -1 * sequence[z%taille];
+			}
+		}
 
-   /* ========== Programme ============= */
+		printf("Voici la sequence codée : ");
+		afficheTabInt(code, taille*N);
 
-   /*Création et affichage de la matrice de Hadamard de taille correspondante*/
-   init_mat(mat_hadamard,taille);
-   generer_hadamard(mat_hadamard,taille);
-   printf("\nLa matrice Hadamard de taille %d est :\n", taille);
-   afficher_hadamard(mat_hadamard,taille);
+		afficheSeparateur();
+	}
 
-   /*Attribution d'une sequence pour chaque user*/
-   for(int utilisateur = 0; utilisateur < nb_utilisateur; utilisateur++){
+	//Libération de la mémoire
+	for (int i = 0; i < taille; ++i)
+	free(matHadamard[i]);
+	free(matHadamard);
 
-      /*selection d'une ligne libre au hasard*/
-      if((num_sequence = selecteur(taille)) == -1){
-         perror("probleme selection ligne dans matrice hadamard");
-         exit(EXIT_FAILURE);
-      }
-
-      for(int i = 0; i < taille; i++){
-         sequence[i]= mat_hadamard[num_sequence][i];
-      }
-      printf("Le user %d utilise la séquence n°%d : \n", utilisateur+1, num_sequence+1);
-      afficher_tab_int(sequence, taille);
-
-      /*Temporisation pour un meilleur affichage*/
-      sleep(1);
-
-      for(int a=0;a<N;a++){
-         /*boucle de chiffrage du mot*/
-         for(int z=0;z<taille*N;z++){
-            if(mot[a] == 1)
-               mot_code[z]= sequence[z%taille];
-            else
-               mot_code[z]= -1 * sequence[z%taille];
-         }
-      }
-
-      printf("Voici la sequence codée : ");
-      afficher_tab_int(mot_code, taille*N);
-
-      afficher_separateur();
-   }
-
-   /* ======================= */
-
-   /* ========== LIBERATION ============= */
-   for (int i = 0; i < taille; ++i)
-      free(mat_hadamard[i]);
-   free(mat_hadamard);
-   /* ======================= */
-
-
-   puts( "\n ====================== FIN DE PROGRAMME ========================= \n" ) ;
-   system("pause");
-   return 0;
+	system("pause");
+	return 0;
 }

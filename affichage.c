@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include "affichage.h"
 
-void afficher_hadamard(int ** matH, int tailleMat){
-   /*affiche en joli une matrice de Hadamard*/
+void afficheHadamard(int ** matH, int tailleMat){
    for(int k = 0; k < tailleMat; k++){
       printf("+---");
    }
@@ -24,13 +23,13 @@ void afficher_hadamard(int ** matH, int tailleMat){
    printf("\n");
 }
 
-void afficher_tab_int(int tab[], int taille){
+void afficheTabInt(int tab[], int taille){
 	for(int i = 0; i < taille; i++){
       printf("%2d ", tab[i]);
    }
    printf("\n");
 }
 
-void afficher_separateur(){
+void afficheSeparateur(){
 	printf("\n===========================\n");
 }
