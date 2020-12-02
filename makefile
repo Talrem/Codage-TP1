@@ -4,7 +4,7 @@ LDFLAGS =
 
 SRC = $(wildcard *.c)
 OBJS = $(SRC:.c=.o)
-AOUT = prog
+AOUT = prog.exe
 
 all : $(AOUT)
 

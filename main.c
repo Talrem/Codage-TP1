@@ -9,7 +9,7 @@
 #include "canal.h"
 
 
-int main(){  
+int main(){
 /* ========== DECLARATION ============= */
 	int nb_utilisateur = 4;
 	int taille = 4;
@@ -83,7 +83,7 @@ int main(){
          perror("probleme selection ligne dans matrice hadamard");
          exit(EXIT_FAILURE);
       }
-      
+
       for(int i = 0; i < taille; i++){
          sequence[i]= mat_hadamard[num_sequence][i];
       }
@@ -119,6 +119,6 @@ int main(){
 
 
    puts( "\n ====================== FIN DE PROGRAMME ========================= \n" ) ;
-
+   system("pause");
    return 0;
 }
