@@ -18,54 +18,54 @@ int main(){
 	int N = 3;
 
 	srand(time(NULL));
-	
+
 	printf("Veuillez rentrer le nombre d'utilisateurs : ");
 
 	scanf("%d",&nbUsers);
 	taille = taille_mat_selon_user(nbUsers);
 
-	//mot envoyé par l'utilisateur
+	//mot envoye par l'utilisateur
 	int mot[N];
-	//tableau contenant la sequence codée
+	//tableau contenant la sequence codee
 	int sequence[taille];
-	//tableau contenant le mot codé
+	//tableau contenant le mot code
 	int code[taille*N];
 
-	//Géneration de la séquence aléatoire
+	//Generation de la sequence aleatoire
 	for(int i=0;i<N;i++){
 		mot[i] = rand()%2;
 	}
 
-	printf("La séquence qui a été générée est : ");
+	printf("La sequence qui a ete generee est : ");
 	for(int i=0;i<N;i++){
 		printf(" %d ",mot[i]);
 	}
 	printf("\n");
 
-	// Allocation mémoire
+	// Allocation memoire
 	matHadamard = (int **) malloc(taille * sizeof(int *));
 	if(NULL == matHadamard){
-		perror("Problème de malloc sur la matrice hadamard");
+		perror("Probleme de malloc sur la matrice hadamard");
 		exit(EXIT_FAILURE);
 	}
 
 	for(int i = 0; i < taille; ++i){
 		matHadamard[i] = (int *) malloc(taille * sizeof(int));
 		if(NULL == matHadamard[i]){
-			perror("Problème de malloc sur une ligne de la matrice hadamard");
+			perror("Probleme de malloc sur une ligne de la matrice hadamard");
 			exit(EXIT_FAILURE);
 		}
 	}
 
-	/*Création de la matrice*/
-	init_mat(matHadamard,taille);
+	/*Creation de la matrice*/
+	initMat(matHadamard,taille);
 	genereHadamard(matHadamard,taille);
 	printf("\nLa matrice Hadamard de taille %d est :\n", taille);
 
 	//Affichage de la matrice
 	afficheHadamard(matHadamard,taille);
 
-	//Attribution des séquences
+	//Attribution des sequences
 	for(int utilisateur = 0; utilisateur < nbUsers; utilisateur++){
 
 		/*selection d'une ligne libre au hasard*/
@@ -77,7 +77,7 @@ int main(){
 		for(int i = 0; i < taille; i++){
 			sequence[i]= matHadamard[numSequence][i];
 		}
-		printf("Le user %d utilise la séquence n°%d : \n", utilisateur+1, numSequence+1);
+		printf("Le user %d utilise la sequence %d : \n", utilisateur+1, numSequence+1);
 		afficheTabInt(sequence, taille);
 		sleep(1);
 
@@ -91,13 +91,13 @@ int main(){
 			}
 		}
 
-		printf("Voici la sequence codée : ");
+		printf("Voici la sequence codee : ");
 		afficheTabInt(code, taille*N);
 
 		afficheSeparateur();
 	}
 
-	//Libération de la mémoire
+	//Liberation de la memoire
 	for (int i = 0; i < taille; ++i)
 	free(matHadamard[i]);
 	free(matHadamard);
