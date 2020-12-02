@@ -22,7 +22,7 @@ int main(){
 	printf("Veuillez rentrer le nombre d'utilisateurs : ");
 
 	scanf("%d",&nbUsers);
-	taille = taille_mat_selon_user(nbUsers);
+	taille = tailleMat(nbUsers);
 
 	//mot envoye par l'utilisateur
 	int mot[N];

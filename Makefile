@@ -8,7 +8,7 @@ AOUT = prog.exe
 
 all : $(AOUT)
 
-prog : $(OBJS)
+prog.exe : $(OBJS)
 	$(CC) $(LDFLAGS) -o $@ $^ -lm
 %.o : %.c
 	$(CC) $(CFLAGS) -o $@ -c $<
