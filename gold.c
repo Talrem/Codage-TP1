@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-
+#include "gold.h"
 
 int xor(int a,int b){
     return ((a && !b) || (!a && b));
