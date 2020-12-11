@@ -8,6 +8,10 @@ initRegistres(int * registres, taille){
   }
 }
 
+int xor(int a,int b){
+    return ((a && !b) || (!a && b));
+}
+
 void codeurGold(int * cases, int taille, int nbDecalage){
     int * registres[taille] = malloc(sizeof int * taille);
     int i;
