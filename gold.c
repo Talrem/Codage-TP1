@@ -22,6 +22,7 @@ void codeurGold(int * polyGen, int taille, int * registres){  // realise un coda
         }
       }
     }
+    decalage(resultXor,registres);
 }
 
 void decalage(int resultXor, int * registres){
