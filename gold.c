@@ -8,7 +8,7 @@ int xor(int a,int b){
 
 
 
-void codeurGold(int * polyGen, int taille, int * registres){  // realise un codage
+void codeurLongueurMax(int * polyGen, int taille, int * registres){  // realise un codage
     int resultXor = -1;                                                  //de gold, neccesite les plynome de Générétion, la taille et les registres initialisé
     int i,j;
     for(i=0; i < taille ; i++){
